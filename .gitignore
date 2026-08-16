@@ -1,0 +1,23 @@
+/target
+**/*.rs.bk
+*.pdb
+
+# 草稿与临时产物
+/scratch
+/tmp
+*.log
+
+# 编辑器与系统产物
+.idea/
+.vscode/
+.DS_Store
+
+# 签名与密钥材料，请勿提交至版本库
+*.pem
+*.key
+*.p12
+*.keystore
+*.jks
+.env
+.env.*
+!.env.example

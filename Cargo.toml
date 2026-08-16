@@ -1,0 +1,28 @@
+[package]
+name = "ports"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT"
+description = "See what's listening on a port — pid, process, user, uptime, full command."
+repository = "https://github.com/kirklin/ports"
+authors = ["Kirk Lin"]
+categories = ["command-line-utilities", "network-programming"]
+keywords = ["port", "lsof", "netstat", "listen", "socket"]
+
+[[bin]]
+name = "ports"
+path = "src/main.rs"
+
+[dependencies]
+# 此项目仅依赖 libc，刻意避免引入 clap 和 serde 等重型依赖。
+# 命令行参数较为简单，且 JSON 输出结构扁平，通过手动解析和拼接即可实现功能。
+# 这样可以大幅缩短冷编译时间，并消除依赖供应链风险。
+libc = "0.2"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
